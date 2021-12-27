@@ -1,26 +1,37 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { TodosContext } from '../contexts/TodosContext';
 
-export default function TodoForm(props) {
+export default function TodoForm() {
+  const { todos, setTodos, newTodoId, setNewTodoId } = useContext(TodosContext);
   const [newTodo, setNewTodo] = useState('');
 
   function handleInput(event) {
     setNewTodo(event.target.value);
   }
 
-  function handleSubmit(event) {
+  function addTodo(event) {
     event.preventDefault();
 
     if (newTodo.trim().length === 0) {
       return;
     }
 
-    props.addTodo(newTodo);
+    setTodos([
+      ...todos,
+      {
+        id: newTodoId,
+        title: newTodo,
+        isComplete: false,
+      },
+    ]);
+
+    setNewTodoId((prevId) => prevId + 1);
 
     setNewTodo('');
   }
 
   return (
-    <form action="#" onSubmit={handleSubmit}>
+    <form action="#" onSubmit={addTodo}>
       <input
         type="text"
         value={newTodo}

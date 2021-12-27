@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { TodosContext } from '../contexts/TodosContext';
 
-function TodoFilters({ setFilter, filter }) {
+function TodoFilters() {
+  const { setFilter, filter } = useContext(TodosContext);
+
   return (
     <div>
       <button
