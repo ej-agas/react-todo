@@ -46,43 +46,41 @@ function App() {
         todosFiltered,
       }}
     >
-      <div className="todo-app-container">
-        <div className="todo-app">
-          <div className="name-container">
-            <h2>What is your name?</h2>
-            <form action="#">
-              <input
-                type="text"
-                ref={nameInputEl}
-                className="todo-input"
-                placeholder="What is your name?"
-                value={name}
-                onChange={handleNameInput}
-              />
-              <CSSTransition
-                in={name.length > 0}
-                timeout={150}
-                classNames="slide-vertical"
-                unmountOnExit
-              >
-                <p className="name-label">Hello, {name}</p>
-              </CSSTransition>
-            </form>
-          </div>
-          <h2>Todo App</h2>
-          <TodoForm />
-
-          <SwitchTransition>
+      <div className="todo-app">
+        <div className="name-container">
+          <h2>What is your name?</h2>
+          <form action="#">
+            <input
+              type="text"
+              ref={nameInputEl}
+              className="todo-input"
+              placeholder="What is your name?"
+              value={name}
+              onChange={handleNameInput}
+            />
             <CSSTransition
-              key={todos.length > 0}
+              in={name.length > 0}
               timeout={150}
               classNames="slide-vertical"
               unmountOnExit
             >
-              {todos.length > 0 ? <TodoList /> : <NoTodos />}
+              <p className="name-label">Hello, {name}</p>
             </CSSTransition>
-          </SwitchTransition>
+          </form>
         </div>
+        <h2>Todo App</h2>
+        <TodoForm />
+
+        <SwitchTransition>
+          <CSSTransition
+            key={todos.length > 0}
+            timeout={150}
+            classNames="slide-vertical"
+            unmountOnExit
+          >
+            {todos.length > 0 ? <TodoList /> : <NoTodos />}
+          </CSSTransition>
+        </SwitchTransition>
       </div>
     </TodosContext.Provider>
   );
