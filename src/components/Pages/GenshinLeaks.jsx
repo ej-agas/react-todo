@@ -1,23 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import useFetch from '../../hooks/useFetch';
 
 export default function GenshinLeaks() {
-  const [posts, setPosts] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [errorMessage, setErrorMessage] = useState(null);
   const baseUrl = 'https://www.reddit.com';
-
-  useEffect(() => {
-    fetch(baseUrl + '/r/Genshin_Impact_Leaks.json')
-      .then((res) => res.json())
-      .then((results) => {
-        setIsLoading(false);
-        setPosts(results.data.children);
-      })
-      .catch(() => {
-        setIsLoading(false);
-        setErrorMessage('There was an error fetching data from reddit');
-      });
-  }, []);
+  const {
+    data: posts,
+    isLoading,
+    errorMessage,
+  } = useFetch(baseUrl + '/r/Genshin_Impact_Leaks.json');
 
   return (
     <div className="container">
@@ -26,7 +16,7 @@ export default function GenshinLeaks() {
       {errorMessage && <h1>{errorMessage}</h1>}
       {posts && (
         <ul>
-          {posts.map((post) => (
+          {posts.data.children.map((post) => (
             <li key={post.data.id}>
               <a href={`${baseUrl}${post.data.permalink}`}>{post.data.title}</a>
             </li>
