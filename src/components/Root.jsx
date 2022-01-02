@@ -6,6 +6,7 @@ import About from './Pages/About';
 import NoMatch from './Pages/NoMatch';
 import Blog from './Pages/Blog';
 import BlogPost from './Pages/BlogPost';
+import GenshinLeaks from './Pages/GenshinLeaks';
 
 export default function Root() {
   const routes = [
@@ -13,6 +14,12 @@ export default function Root() {
     { path: '/blog', name: 'Blog', Component: Blog, exact: false },
     { path: '/blog/:id', name: 'Blog Post', Component: BlogPost, exact: false },
     { path: '/about', name: 'About Page', Component: About, exact: false },
+    {
+      path: '/genshin-leaks',
+      name: 'Genshin Leaks',
+      Component: GenshinLeaks,
+      exact: false,
+    },
     { path: '*', name: '404 page', Component: NoMatch, exact: false },
   ];
 

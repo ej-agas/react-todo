@@ -25,6 +25,14 @@ export default function NavigationBar() {
         </li>
         <li>
           <NavLink
+            to="/genshin-leaks"
+            className={({ isActive }) => (isActive ? activeStyle : undefined)}
+          >
+            Genshin Leaks
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
             to="/about"
             className={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
